@@ -1,0 +1,94 @@
+<head>
+  <title>indiceRevisoes</title>
+</head>
+
+<body>
+	{{> addFicha}}
+  {{> indiceRevisoes}}
+
+
+</body>
+
+
+<template name="addFicha">
+ 	 <div id="addFicha">
+      <form>
+        <ul>
+           	Matricula:<br>
+            <input type="text" name="fichaMatricula" placeholder="Inserir matricula"><br>
+            Marca:<br>
+            <input type="text" name="fichaMarca" placeholder="Inserir marca"><br>
+            Modelo:<br>
+            <input type="text" name="fichaModelo" placeholder="Inserir modelo"><br>
+            Ano:<br>
+            <input type="number" name="fichaAno" placeholder="Inserir ano"><br>
+            Criado:<br>
+            <input type="date" name="fichaCriado" placeholder=""><br>
+
+            <input type="reset" value="Reset">
+            <input type="submit" value="Adicionar Ficha">
+        </ul>
+      </form>
+  </div>
+</template>
+
+<!-- Adicionar uma revisão -->
+<template name="addRevisao">
+   <div id="addFicha">
+      <form>
+        <ul>
+            Reparações realizadas<br>
+            <input type="checkbox" name="rep1" value="Mudou-se oleo motor">Mudar oleo motor<br>
+            <input type="checkbox" name="rep2" value="Mudou-se oleo travoes" >Mudar oleo travao<br>
+            <input type="checkbox" name="rep3" value="Mudou-se vela" >Mudar Vela<br>
+            <input type="checkbox" name="rep4" value="Verificou-se nivel oleo motor">Ver nivel oleo motor<br>
+            <input type="checkbox" name="rep5" value="Verifou-se nivel oleo travoes" >Verificar nivel oleo travoes<br>
+            <input type="checkbox" name="rep6" value="Verificou-se pressão pneus" id="verPressaoPneus">Verificar pressão pneus<br>
+            <input type="checkbox" name="rep7" value="Verificou-se pastilhas travão" id="verPastilhasTravao">VerificarTravoes<br>
+            <input type="checkbox" name="rep8" value="Mudou-se oleo motor" id="MudarOleo">Mudar Óleo<br>
+            <input type="checkbox" name="rep9" value="Mudou-se vela" id="MudarVela">Mudar Vela<br>
+            <input type="submit" value="Adicionar Revisão" id="btnCheckboxes">
+        </ul>
+      </form>
+  </div>
+</template>
+
+<template name="listaRevisoes">
+{{#each revisao}}
+<li><label>A  {{data}} foram realizadas as seguintes intervenções: </label></li>
+{{reparado}}
+{{revisaoTamanho}}
+{{/each}}
+</template>
+
+
+<template name="removeFicha">
+<!-- Buttao para o evento que Remove o ficha escolhido-->
+<input type="button" class="remove" value="Remover Ficha">
+</template>
+
+<template name="indiceRevisoes">
+  <ul class="legenda">Matricula   |    Modelo</ul>		
+  {{#each ficha}}
+  <ul class="item {{itemSelecionado}} ">{{matricula}} |  {{marca}}:{{modelo}}
+  	{{#if itemSelecionado }}
+      <div id="dados">  
+        <ul class="dados">
+          <li><label>Id: {{_id}}</label></li>
+          <li><label>Matricula: {{matricula}}</label></li>
+          <li><label>Marca: {{marca}}</label></li>
+          <li><label>Modelo: {{modelo}}</label></li>
+          <li><label>Ano: {{ano}}</label></li>
+          <li><label>Criado a: {{data1}}</label></li>
+          <!-- Botão para remover a ficha selecionada-->
+          {{> removeFicha}} 
+          {{> addRevisao}}
+          {{> listaRevisoes}}
+        </ul>
+      </div>  
+  {{/if}}
+  </ul>
+
+  
+  {{/each}}
+</template>
