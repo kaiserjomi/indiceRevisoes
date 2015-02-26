@@ -3,6 +3,8 @@
 background-color: AliceBlue;
 }
 
+
+
 .item{
 font-weight: bold;
 color: blue;
@@ -23,6 +25,16 @@ ul {
   list-style-type: square;
 }
 
+
+
+#dados{
+  border: 6px solid black;
+  height: 100px;
+  margin: 40px;
+  padding: 20px;
+  width: 400px;
+}
+
 #addFicha{
   border: 6px dotted #949599;
   height: 190px;
@@ -32,12 +44,4 @@ ul {
   text-align: left;
   font-size: 18px;
   font-weight: bold;
-}
-
-#dados{
-  border: 6px solid black;
-  height: 100px;
-  margin: 40px;
-  padding: 20px;
-  width: 400px;
 }

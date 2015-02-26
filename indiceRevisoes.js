@@ -16,6 +16,21 @@ Template.removeFicha.events({
 });
 
 
+
+Template.editFicha.events({
+
+  'submit form': function(event){
+    event.preventDefault();
+    var itemSelecionado = Session.get('selectedItem');
+    var editMatriculaVar = event.target.editMatricula.value;
+    var editMarcaVar = event.target.editMarca.value;
+    var editModeloVar = event.target.editModelo.value;
+    var editAnoVar = parseInt(event.target.editAno.value);
+    Meteor.call('editarDadosFicha', itemSelecionado, editMatriculaVar, editMarcaVar, editModeloVar, editAnoVar);
+    }
+});
+
+
 Template.addFicha.events({
  
   'submit form': function(event){
@@ -48,7 +63,6 @@ Template.addFicha.events({
 Template.indiceRevisoes.events({
 
   'click .item': function(){
-    console.log("You clicked something");
     var itemId = this._id
     Session.set('selectedItem', itemId);
     var itemSelecionado = Session.get('selectedItem');
@@ -98,15 +112,16 @@ Template.addRevisao.events({
 
     //para impedir que faça refresh
     event.preventDefault();
-  var itemSelecionado = Session.get('selectedItem');
-  var listaRepararVar = [].slice.apply(document.querySelectorAll("input[type=checkbox]"))
+    var itemSelecionado = Session.get('selectedItem');
+    console.log(event.target);
+
+    var kilometrosVar = parseInt(event.target.kilometros.value);
+    var listaRepararVar = [].slice.apply(document.querySelectorAll("input[type=checkbox]"))
            .filter(function(c){ return c.checked; })
            .map(function(c){ return c.value; });
   //var idReparacaoVar = event.target._id.value;
-    
-    console.log("id da matricula" + itemSelecionado);
 
-Meteor.call('inserirDadosRevisao', itemSelecionado, listaRepararVar);
+Meteor.call('inserirDadosRevisao', itemSelecionado, kilometrosVar,listaRepararVar);
 
 
   },

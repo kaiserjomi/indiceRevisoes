@@ -16,6 +16,23 @@ Meteor.methods({
     });
   },
 
+'editarDadosFicha': function( itemSelecionado , editMatriculaVar , editMarcaVar , editModeloVar, editAnoVar)
+  {  
+    FichasLista.update(
+    {_id: itemSelecionado},
+    {
+    matricula: editMatriculaVar,
+    marca: editMarcaVar,
+    modelo: editModeloVar,
+    ano: editAnoVar,
+    });
+    console.log("modificou");
+  },
+
+
+
+
+
   'removerDadosFicha': function(selectedItem)
   {  
   console.log("removerDadosFicha: " + selectedItem);
@@ -28,15 +45,17 @@ Meteor.methods({
     }*/
   },
 
-  'inserirDadosRevisao': function( itemSelecionado, listaRepararVar)
+  'inserirDadosRevisao': function( itemSelecionado, kilometrosVar, listaRepararVar)
   {  
   //var currentUserId = Meteor.userId();
   var itemDataVar = new Date();  //create a new date with current date and time
-  var dataVar = itemDataVar.toLocaleDateString();
+  //var dataVar = itemDataVar.toLocaleDateString();
+  var dataVar = itemDataVar.toDateString();
 
     Revisoes.insert({
       idFicha: itemSelecionado,
       data: dataVar,
+      kms: kilometrosVar,
       reparado: listaRepararVar,
     });
   },
