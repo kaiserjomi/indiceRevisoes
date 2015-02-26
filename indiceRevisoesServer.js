@@ -29,10 +29,6 @@ Meteor.methods({
     console.log("modificou");
   },
 
-
-
-
-
   'removerDadosFicha': function(selectedItem)
   {  
   console.log("removerDadosFicha: " + selectedItem);
@@ -60,5 +56,16 @@ Meteor.methods({
     });
   },
 
+  'removerDadosRevisao': function(selectedRevisao)
+  {  
+  console.log("removerDadosRevisão: " + selectedRevisao);
+  Revisoes.remove(selectedRevisao);
+  
+    /*var name=confirm("Quer apagar esta ficha?")
+    if (name==true)
+    {
+    FichasLista.remove(selectedItem);
+    }*/
+  },
 
 });

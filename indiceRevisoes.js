@@ -119,12 +119,21 @@ Template.addRevisao.events({
     var listaRepararVar = [].slice.apply(document.querySelectorAll("input[type=checkbox]"))
            .filter(function(c){ return c.checked; })
            .map(function(c){ return c.value; });
+
   //var idReparacaoVar = event.target._id.value;
 
 Meteor.call('inserirDadosRevisao', itemSelecionado, kilometrosVar,listaRepararVar);
+  
 
+  //for (i = 0; i < listaRepararVar.length; i++)
+  //  {console.log(listaRepararVar[i])}
+  
 
   },
+
+
+
+
 }); 
 
 
@@ -142,10 +151,19 @@ Template.listaRevisoes.helpers({
     return reparado[i];
   }
   },*/
-
 }); 
 
 
+Template.removeRevisao.events({
+
+  'click .remove': function(){
+    //define a var selectedRevisao como sendo a session que tem o ID da revisao
+    var selectedRevisao= this._id;
+    Meteor.call('removerDadosRevisao', selectedRevisao);
+    }
+});
+
+  
 }
 
 if (Meteor.isServer) {

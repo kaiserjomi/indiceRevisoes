@@ -148,16 +148,26 @@
 {{#each revisao}}
 <li><label>A  {{data}} foram realizadas as seguintes intervenções: </label></li>
 <label>Kms:{{kms}}</label><br>
+<li>{{_id}}</li>
 <li>{{reparado}}</li>
 <br>
+{{> removeRevisao}}
 {{/each}}
 </template>
 
+
+
+<template name="removeRevisao">
+<!-- Buttao para o evento que Remove o revisao escolhido-->
+<input type="button" class="remove" value="Remover Revisao">
+</template>
 
 <template name="removeFicha">
 <!-- Buttao para o evento que Remove o ficha escolhido-->
 <input type="button" class="remove" value="Remover Ficha">
 </template>
+
+
 
 <template name="indiceRevisoes">
   <ul class="legenda">Matricula   |    Modelo</ul>		
